@@ -3,14 +3,14 @@ import { ClarifaiStub, grpc } from "clarifai-nodejs-grpc";
 // Clarifai API settings
 const stub = ClarifaiStub.grpc();
 const metadata = new grpc.Metadata();
-metadata.set("authorization", "Key 3c290d71e7ec49839a69f5e1c407486d");
+metadata.set("authorization", `${process.env.CLARIFAI_KEY}`);
 
 // Call Clarifai API
 function handleApiCall(req, res) {
 	stub.PostModelOutputs(
 		{
 			user_app_id: {
-				user_id: "cdi",
+				user_id: `${process.env.CLARIFAI_USER}`,
 				app_id: "facial-recognition",
 			},
 			model_id: "a403429f2ddf4b49b307e318f00e528b",
